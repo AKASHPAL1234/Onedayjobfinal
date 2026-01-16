@@ -120,7 +120,7 @@ export default function ServicesSection({ className = "" }) {
         </div>
 
         <div className="mt-10 text-center">
-          <a href="/post-job" className="inline-block px-6 py-3 rounded-full border border-indigo-600 bg-indigo-50 text-indigo-700 font-medium hover:bg-indigo-600 hover:text-white transition-colors">
+          <a href="/dashboard" className="inline-block px-6 py-3 rounded-full border border-indigo-600 bg-indigo-50 text-indigo-700 font-medium hover:bg-indigo-600 hover:text-white transition-colors">
             {active.cta}
           </a>
         </div>

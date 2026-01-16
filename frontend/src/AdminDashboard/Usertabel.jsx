@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { BACKENDURL } from "../../utiles";
 
 export default function UserTable() {
   const [users, setUsers] = useState([]);
@@ -7,7 +8,7 @@ export default function UserTable() {
   useEffect(() => {
     const getStatus = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/auth/kyc/all");
+        const response = await axios.get(`${BACKENDURL}/api/auth/kyc/all`);
 
         // sirf clients aur workers hi rakho
         const filteredUsers = response.data.data.filter(

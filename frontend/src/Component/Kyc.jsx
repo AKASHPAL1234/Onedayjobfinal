@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { BACKENDURL } from "../../utiles";
 
 const KycForm = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const KycForm = () => {
       if (govtIdImage) data.append("govtIdImage", govtIdImage);
       if (licenseImage) data.append("licenseImage", licenseImage);
 
-      const res = await fetch("http://localhost:5000/api/auth/kyc/submit", {
+      const res = await fetch(`${BACKENDURL}/api/auth/kyc/submit`, {
         method: "POST",
         body: data,
         credentials: "include", // ✅ token cookies ke sath jayega

@@ -14,6 +14,7 @@ import ServicesSection from "./Component/Pages/Services";
 import ProfilePage from "./Component/Pages/Profile";
 import "./i18n";
 import Footer from "./Component/Fotter";
+import About from "./Component/Pages/About";
 
 
 
@@ -33,6 +34,7 @@ function App() {
        <Route path="/resetpassword" element={<ResetPassword/>} />
        <Route path="/register" element={<Register />} />
        <Route path="/help" element={<Help/>} />
+       <Route path="/about" element={<About/>} />
        <Route path="/postJob" element={<PostJob/>} />
        <Route path="/home" element={<Home/>}/>
        <Route path="/services" element={<ServicesSection/>}/>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Users, UserCog, Briefcase, FileWarning } from "lucide-react";
+import { BACKENDURL } from "../../utiles";
 
 export default function StatsCards() {
   const [stats, setStats] = useState([
@@ -14,7 +15,7 @@ export default function StatsCards() {
     const fetchStats = async () => {
       try {
         // 👇 apne backend ka API endpoint daalo
-        const res = await axios.get("http://localhost:5000/api/auth/kyc/stats");  
+        const res = await axios.get(`${BACKENDURL}/api/auth/kyc/stats`);  
         console.log(res.data)
 
         // maan lo backend se yeh data aata hai:

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { BACKENDURL } from "../../utiles";
 
 export default function KycTable() {
   const [kycs, setKycs] = useState([]);
@@ -9,7 +10,7 @@ export default function KycTable() {
   useEffect(() => {
     const fetchKycs = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/auth/kyc/all");
+        const res = await axios.get(`${BACKENDURL}/api/auth/kyc/all`);
         setKycs(res.data.data);
       } catch (err) {
         console.error("Error fetching KYC:", err);
@@ -23,7 +24,7 @@ export default function KycTable() {
   const handleStatusChange = async (id, newStatus) => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/auth/kyc/status/${id}`,
+       `${BACKENDURL}/api/auth/kyc/status/${id}`,
         { status: newStatus }
       );
 

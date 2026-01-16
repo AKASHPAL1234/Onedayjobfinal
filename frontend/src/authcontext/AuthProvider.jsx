@@ -1,5 +1,6 @@
 import { useEffect, useState, createContext, useContext } from "react";
 import axios from "axios";
+import { BACKENDURL } from "../../utiles";
 
 export const AuthContext = createContext();
 
@@ -12,7 +13,7 @@ export function AuthProvider({ children }) {
     const fetchProfile = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/auth/myprofile",
+          `${BACKENDURL}/api/auth/myprofile`,
           { withCredentials: true }
         );
         localStorage.setItem("role",data.user.role);
@@ -27,7 +28,7 @@ export function AuthProvider({ children }) {
     const fetchJobs = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/job/all",
+          `${BACKENDURL}/api/job/all`,
           { withCredentials: true }
         );
         setJobs(response.data);

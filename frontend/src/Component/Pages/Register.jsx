@@ -1,279 +1,3 @@
-// import { useState } from "react";
-// import { Link, useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-
-// function Register() {
-//   const navigate = useNavigate();
-//   const [formData, setFormData] = useState({
-//     role: "",
-//     name: "",
-//     email: "",
-//     phone: "",
-//     password: "",
-//     extra: "",
-//     photo: null,
-//   });
-
-//   const [loading, setLoading] = useState(false);
-//   const [otpSent, setOtpSent] = useState(false);
-//   const [otp, setOtp] = useState("");
-//   const [isOtpVerified, setIsOtpVerified] = useState(false);
-
-//   // ✅ Input change
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   // ✅ File input
-//   const handleFileChange = (e) => {
-//     setFormData({ ...formData, photo: e.target.files[0] });
-//   };
-
-//   // ✅ Send OTP
-//   const handleSendOtp = async () => {
-//     if (!formData.email) {
-//       return toast.error("Please enter email first");
-//     }
-//     try {
-//       const res = await axios.post(
-//         "http://localhost:5000/api/auth/send-otp",
-//         { email: formData.email },
-        
-//       );
-//       toast.success(res.data.message || "OTP sent!");
-//       setOtpSent(true);
-//     } catch (err) {
-//       toast.error(err.response?.data?.message || "Failed to send OTP");
-//     }
-//   };
-
-//   // ✅ Verify OTP
-//   const handleVerifyOtp = async () => {
-//     try {
-//       const res = await axios.post(
-//         "http://localhost:5000/api/auth/verify-otp",
-//         { email: formData.email, otp },
-        
-//       );
-//       toast.success(res.data.message || "OTP Verified!");
-//       setIsOtpVerified(true);
-//     } catch (err) {
-//       toast.error(err.response?.data?.message || "Invalid OTP");
-//     }
-//   };
-
-//   // ✅ Register
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     if (!isOtpVerified) {
-//       return toast.error("Please verify OTP before registering!");
-//     }
-
-//     if (formData.password.length < 6) {
-//       return toast.error("Password must be at least 6 characters!");
-//     }
-
-//     try {
-//       setLoading(true);
-//       const data = new FormData();
-//       Object.keys(formData).forEach((key) => {
-//         data.append(key, formData[key]);
-//       });
-
-//       const res = await axios.post(
-//         "http://localhost:5000/api/auth/register",
-//         data,
-//         {
-//           headers: { "Content-Type": "multipart/form-data" },
-//           withCredentials: true,
-//         }
-//       );
-
-//       toast.success(res.data.message || "Registered successfully!");
-//       navigate("/login", { replace: true });
-//     } catch (err) {
-//       toast.error(err.response?.data?.message || "Registration failed!");
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div className="min-h-screen flex items-center justify-center bg-gray-200 text-xl">
-//       <ToastContainer position="top-center" autoClose={2000} />
-//       <div className="w-full max-w-md shadow-md rounded-lg bg-white p-4">
-//         <form onSubmit={handleSubmit}>
-//           <div className="text-center font-bold text-4xl mb-10">
-//             OneDay<span className="text-blue-700">Job</span>
-//           </div>
-//           <h1 className="font-semibold text-xl">Register</h1>
-
-//           {/* Role Select */}
-//           <select
-//             name="role"
-//             value={formData.role}
-//             onChange={handleChange}
-//             className="w-full p-2 border rounded-md mt-2"
-//           >
-//             <option value="">Select Role</option>
-//             <option value="Worker">Worker</option>
-//             <option value="Client">Client</option>
-           
-//           </select>
-
-//           {/* Name */}
-//           <input
-//             type="text"
-//             name="name"
-//             placeholder="Your name"
-//             value={formData.name}
-//             onChange={handleChange}
-//             className="w-full p-2 border rounded-md mt-2"
-//           />
-
-//           {/* Email + OTP */}
-//           <div className="flex gap-2 mt-2 items-center">
-//             <input
-//               type="email"
-//               name="email"
-//               placeholder="Your Email"
-//               value={formData.email}
-//               onChange={handleChange}
-//               className="w-full p-2 border rounded-md"
-//             />
-//             <button
-//               type="button"
-//               disabled={otpSent}
-//               onClick={handleSendOtp}
-//               className={`px-3 py-2 rounded-md text-white ${
-//                 otpSent ? "bg-gray-400" : "bg-blue-500"
-//               }`}
-//             >
-//               {otpSent ? "Sent" : "Send OTP"}
-//             </button>
-//           </div>
-
-//           {/* OTP Input (Visible after sending OTP) */}
-//           {otpSent && (
-//             <div className="flex gap-2 mt-2 items-center">
-//               <input
-//                 type="text"
-//                 placeholder="Enter OTP"
-//                 value={otp}
-//                 onChange={(e) => setOtp(e.target.value)}
-//                 className="w-full p-2 border rounded-md"
-//               />
-//               <button
-//                 type="button"
-//                 onClick={handleVerifyOtp}
-//                 className="bg-green-500 text-white px-3 py-2 rounded-md"
-//               >
-//                 Verify
-//               </button>
-//               {isOtpVerified && <span className="text-green-600 text-2xl">✅</span>}
-//             </div>
-//           )}
-
-//           {/* Phone */}
-//           <input
-//             type="tel"
-//             name="phone"
-//             placeholder="Phone Number"
-//             value={formData.phone}
-//             onChange={handleChange}
-//             className="w-full p-2 border rounded-md mt-2"
-//           />
-
-//           {/* Password */}
-//           <input
-//             type="password"
-//             name="password"
-//             placeholder="Password"
-//             value={formData.password}
-//             onChange={handleChange}
-//             className="w-full p-2 border rounded-md mt-2"
-//           />
-
-//           {/* Client Only - Company Type */}
-//           {formData.role === "Client" && (
-//             <select
-//               name="extra"
-//               value={formData.extra}
-//               onChange={handleChange}
-//               className="w-full p-2 border rounded-md mt-2 mb-4"
-//             >
-//               <option value="">Select Company Type</option>
-//               <option value="construction">Construction</option>
-//               <option value="it">IT</option>
-//               <option value="catering">Catering</option>
-//               <option value="other">Other</option>
-//             </select>
-//           )}
-
-//           {/* Photo Upload */}
-//           <div className="flex items-center">
-//             <input
-//               type="file"
-//               name="photo"
-//               onChange={handleFileChange}
-//               className="w-full p-2 border rounded-md mt-2"
-//               accept="image/*"
-//             />
-//           </div>
-
-//           <p className="text-center mt-2">
-//             Already have an account?{" "}
-//             <Link to="/login" className="text-blue-600">
-//               Login
-//             </Link>
-//           </p>
-
-//           <button
-//             type="submit"
-//             disabled={loading}
-//             className={`w-full p-2 mt-4 rounded-md text-white ${
-//               loading ? "bg-gray-400" : "bg-blue-600"
-//             }`}
-//           >
-//             {loading ? (
-//               <span className="flex justify-center items-center">
-//                 <svg
-//                   className="animate-spin h-5 w-5 mr-2 text-white"
-//                   xmlns="http://www.w3.org/2000/svg"
-//                   fill="none"
-//                   viewBox="0 0 24 24"
-//                 >
-//                   <circle
-//                     className="opacity-25"
-//                     cx="12"
-//                     cy="12"
-//                     r="10"
-//                     stroke="currentColor"
-//                     strokeWidth="4"
-//                   ></circle>
-//                   <path
-//                     className="opacity-75"
-//                     fill="currentColor"
-//                     d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-//                   ></path>
-//                 </svg>
-//                 Registering...
-//               </span>
-//             ) : (
-//               "Register"
-//             )}
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Register;
-
 
 
 
@@ -283,6 +7,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
+import { BACKENDURL } from "../../../utiles";
 
 function Register() {
   const { t, i18n } = useTranslation();
@@ -315,7 +40,7 @@ function Register() {
     if (!formData.email) return toast.error(t("register.emailFirst"));
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/send-otp",
+        `${BACKENDURL}/api/auth/send-otp`,
         { email: formData.email }
       );
       toast.success(res.data.message || t("register.otpSent"));
@@ -328,7 +53,7 @@ function Register() {
   const handleVerifyOtp = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/verify-otp",
+        `${BACKENDURL}/api/auth/verify-otp`,
         { email: formData.email, otp }
       );
       toast.success(res.data.message || t("register.otpVerified"));
@@ -350,7 +75,7 @@ function Register() {
       const data = new FormData();
       Object.keys(formData).forEach((key) => data.append(key, formData[key]));
 
-      const res = await axios.post("http://localhost:5000/api/auth/register", data, {
+      const res = await axios.post(`${BACKENDURL}/api/auth/register`, data, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true,
       });

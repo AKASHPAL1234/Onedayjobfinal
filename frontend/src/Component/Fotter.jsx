@@ -4,17 +4,17 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/f
 const Footer = () => {
   // Define link data for easy mapping
   const quickLinks = [
-    { name: 'Home', href: '#' },
+    { name: 'Home', href: '/' },
     { name: 'Jobs', href: '#' },
-    { name: 'Companies', href: '#' },
-    { name: 'About Us', href: '#' },
+    { name: 'Companies', href: '/' },
+    { name: 'About Us', href: '/about' },
   ];
 
   const resources = [
     { name: 'Blog', href: '#' },
     { name: 'Career Guide', href: '#' },
     { name: 'Resume Builder', href: '#' },
-    { name: 'Help Center', href: '#' },
+    { name: 'Help Center', href: '/help' },
   ];
 
   const socialLinks = [

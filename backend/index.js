@@ -7,7 +7,6 @@ import jobRouter from "./routes/job.route.js";
 import fileUpload from "express-fileupload";
 import { v2 as cloudinary } from "cloudinary";
 import cookieParser from "cookie-parser";
-import serverless from "serverless-http";
 
 dotenv.config();
 

@@ -1,27 +1,3 @@
-// import React from "react";
-// import { Home, Users, FileText, LogOut } from "lucide-react";
-
-// export default function Sidebar() {
-//   return (
-//     <div className="w-64 bg-blue-900 text-white min-h-screen p-4">
-//       <h1 className="text-2xl font-bold mb-8">Admin Panel</h1>
-//       <ul className="space-y-4">
-//         <li className="flex items-center space-x-2 cursor-pointer hover:text-gray-300">
-//           <Home /> <span>Dashboard</span>
-//         </li>
-//         <li className="flex items-center space-x-2 cursor-pointer hover:text-gray-300">
-//           <FileText /> <span>KYC Requests</span>
-//         </li>
-//         <li className="flex items-center space-x-2 cursor-pointer hover:text-gray-300">
-//           <Users /> <span>Users</span>
-//         </li>
-//         <li className="flex items-center space-x-2 cursor-pointer hover:text-gray-300">
-//           <LogOut /> <span>Logout</span>
-//         </li>
-//       </ul>
-//     </div>
-//   );
-// }
 
 
 

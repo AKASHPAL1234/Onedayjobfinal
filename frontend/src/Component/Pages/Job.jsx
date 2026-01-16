@@ -3,6 +3,7 @@ import { useAuth } from "../../authcontext/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import { BACKENDURL } from "../../../utiles";
 
 const Job = () => {
   const { profile: user } = useAuth();
@@ -24,7 +25,7 @@ const Job = () => {
   const fetchJobs = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get("http://localhost:5000/api/job/all", {
+      const { data } = await axios.get(`${BACKENDURL}/api/job/all`, {
         withCredentials: true,
       });
       setJobs(data);
@@ -42,7 +43,7 @@ const Job = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/job/accept",
+        `${BACKENDURL}/api/job/accept`,
         { jobId, workerId: user._id },
         { withCredentials: true }
       );
@@ -72,7 +73,7 @@ const Job = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/auth/validate-worker-code",
+       `${BACKENDURL}/api/auth/validate-worker-code`,
         { workerCode: code },
         { withCredentials: true }
       );
@@ -111,7 +112,7 @@ const Job = () => {
     try {
       setAddingWorker((prev) => ({ ...prev, [jobId]: true }));
       const { data } = await axios.post(
-        "http://localhost:5000/api/job/add-worker",
+        `${BACKENDURL}/api/job/add-worker`,
         { jobId, workerCodes: codes },
         { withCredentials: true }
       );
@@ -147,7 +148,7 @@ const Job = () => {
   const handleCloseJob = async (jobId) => {
     try {
       await axios.post(
-        "http://localhost:5000/api/job/close",
+        `${BACKENDURL}/api/job/close`,
         { jobId },
         { withCredentials: true }
       );
@@ -359,14 +360,14 @@ const Job = () => {
                       )}
 
                     {/* Client Close Job */}
-                    {/* {user?.role === "Client" && (
+                    {user?.role === "Client" && (
                       <button
                         onClick={() => handleCloseJob(job._id)}
                         className="bg-blue-700 text-white px-3 py-2 rounded-lg hover:bg-blue-800 transition"
                       >
                         Close
                       </button>
-                    )} */}
+                    )}
 
                     {/* Accepted worker count */}
                     {job.acceptedBy?.length > 0 && (
@@ -393,5 +394,280 @@ const Job = () => {
 export default Job;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from "react";
+// import { useAuth } from "../../authcontext/AuthProvider";
+// import axios from "axios";
+// import toast from "react-hot-toast";
+// import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+// import { BACKENDURL } from "../../../utiles";
+
+// const Job = () => {
+//   const { profile: user } = useAuth();
+//   const [jobs, setJobs] = useState([]);
+//   const [activeTab, setActiveTab] = useState("All");
+//   const [loading, setLoading] = useState(true);
+
+//   const [workerFormVisible, setWorkerFormVisible] = useState({});
+//   const [workerCountInput, setWorkerCountInput] = useState({});
+//   const [workerCodeInput, setWorkerCodeInput] = useState({});
+//   const [verifyingCode, setVerifyingCode] = useState({});
+//   const [verifyResult, setVerifyResult] = useState({});
+//   const [addingWorker, setAddingWorker] = useState({});
+
+//   useEffect(() => {
+//     fetchJobs();
+//   }, []);
+
+//   // ================= FETCH JOBS =================
+//   const fetchJobs = async () => {
+//     try {
+//       setLoading(true);
+//       const { data } = await axios.get(`${BACKENDURL}/api/job/all`, {
+//         withCredentials: true,
+//       });
+//       setJobs(data);
+//     } catch (err) {
+//       console.error(err);
+//       toast.error("Failed to fetch jobs");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   // ================= ACCEPT JOB =================
+//   const handleAcceptJob = async (jobId) => {
+//     if (user?.kycStatus !== "Approved") {
+//       return toast.error("KYC not approved. Cannot accept jobs.");
+//     }
+
+//     try {
+//       const { data } = await axios.post(
+//         `${BACKENDURL}/api/job/accept`,
+//         { jobId, workerId: user._id },
+//         { withCredentials: true }
+//       );
+
+//       toast.success(data.message || "Job accepted");
+
+//       // IMPORTANT: update job using backend response OR safe merge
+//       setJobs((prev) =>
+//         prev.map((job) =>
+//           job._id === jobId
+//             ? {
+//                 ...job,
+//                 acceptedBy: Array.from(
+//                   new Set([...(job.acceptedBy || []), user._id])
+//                 ),
+//               }
+//             : job
+//         )
+//       );
+//     } catch (err) {
+//       console.error(err);
+//       toast.error(err.response?.data?.message || "Accept job failed");
+//     }
+//   };
+
+//   // ================= VERIFY WORKER CODE =================
+//   const handleVerifyCode = async (jobId, index) => {
+//     const code = workerCodeInput[jobId]?.[index];
+//     if (!code) return toast.error("Enter worker code");
+
+//     setVerifyingCode((prev) => ({
+//       ...prev,
+//       [jobId]: { ...(prev[jobId] || {}), [index]: true },
+//     }));
+
+//     try {
+//       const { data } = await axios.post(
+//         `${BACKENDURL}/api/auth/validate-worker-code`,
+//         { workerCode: code },
+//         { withCredentials: true }
+//       );
+
+//       setVerifyResult((prev) => ({
+//         ...prev,
+//         [jobId]: { ...(prev[jobId] || {}), [index]: data.valid },
+//       }));
+
+//       data.valid === "valid"
+//         ? toast.success(`Worker ${index + 1} verified`)
+//         : toast.error(`Worker ${index + 1} invalid`);
+//     } catch (err) {
+//       console.error(err);
+//       toast.error("Verification failed");
+//     } finally {
+//       setVerifyingCode((prev) => ({
+//         ...prev,
+//         [jobId]: { ...(prev[jobId] || {}), [index]: false },
+//       }));
+//     }
+//   };
+
+//   // ================= ADD WORKERS =================
+//   const handleAddWorker = async (jobId) => {
+//     const codes = workerCodeInput[jobId] || [];
+//     if (codes.some((c) => !c)) return toast.error("Enter all worker codes");
+
+//     try {
+//       setAddingWorker((prev) => ({ ...prev, [jobId]: true }));
+
+//       const { data } = await axios.post(
+//         `${BACKENDURL}/api/job/add-worker`,
+//         { jobId, workerCodes: codes },
+//         { withCredentials: true }
+//       );
+
+//       toast.success(`${data.addedWorkers.length} worker(s) added`);
+
+//       setJobs((prev) =>
+//         prev.map((job) =>
+//           job._id === jobId
+//             ? {
+//                 ...job,
+//                 acceptedBy: [
+//                   ...(job.acceptedBy || []),
+//                   ...data.addedWorkers.map((w) => w._id),
+//                 ],
+//               }
+//             : job
+//         )
+//       );
+
+//       setWorkerFormVisible((prev) => ({ ...prev, [jobId]: false }));
+//     } catch (err) {
+//       console.error(err);
+//       toast.error("Add worker failed");
+//     } finally {
+//       setAddingWorker((prev) => ({ ...prev, [jobId]: false }));
+//     }
+//   };
+
+//   // ================= CLOSE JOB =================
+//   const handleCloseJob = async (jobId) => {
+//     try {
+//       await axios.post(
+//         `${BACKENDURL}/api/job/close`,
+//         { jobId },
+//         { withCredentials: true }
+//       );
+
+//       toast.success("Job closed");
+
+//       setJobs((prev) =>
+//         prev.map((job) =>
+//           job._id === jobId ? { ...job, status: "Closed" } : job
+//         )
+//       );
+//     } catch (err) {
+//       console.error(err);
+//       toast.error("Close job failed");
+//     }
+//   };
+
+//   const filteredJobs =
+//     activeTab === "All"
+//       ? jobs
+//       : jobs.filter((j) => j.category === activeTab.toLowerCase());
+
+//   // ================= UI =================
+//   return (
+//     <div className="container mx-auto p-4">
+//       <div className="flex gap-3 mb-6">
+//         {["All", "Cleaning", "Cooking", "Tech"].map((tab) => (
+//           <button
+//             key={tab}
+//             onClick={() => setActiveTab(tab)}
+//             className={`px-4 py-2 rounded ${
+//               activeTab === tab
+//                 ? "bg-indigo-600 text-white"
+//                 : "bg-gray-200"
+//             }`}
+//           >
+//             {tab}
+//           </button>
+//         ))}
+//       </div>
+
+//       {loading ? (
+//         <p className="text-center">Loading jobs...</p>
+//       ) : (
+//         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+//           {filteredJobs.map((job) => {
+//             const isAccepted = job.acceptedBy?.some(
+//               (id) => id.toString() === user?._id
+//             );
+//             const isFull =
+//               (job.acceptedBy?.length || 0) >= job.workersNeeded;
+
+//             return (
+//               <div
+//                 key={job._id}
+//                 className="bg-white p-5 rounded-xl shadow"
+//               >
+//                 <h3 className="font-bold text-lg">{job.title}</h3>
+//                 <p>₹{job.budget}</p>
+//                 <p>
+//                   Workers: {job.acceptedBy?.length || 0} /{" "}
+//                   {job.workersNeeded}
+//                 </p>
+//                 <p>Status: {job.status}</p>
+
+//                 {user?.role === "Worker" && !isAccepted && !isFull && (
+//                   <button
+//                     onClick={() => handleAcceptJob(job._id)}
+//                     className="bg-green-600 text-white w-full py-2 mt-3 rounded"
+//                   >
+//                     Accept Job
+//                   </button>
+//                 )}
+
+//                 {isAccepted && (
+//                   <p className="text-yellow-600 mt-3 text-center">
+//                     You accepted this job
+//                   </p>
+//                 )}
+
+//                 {user?.role === "Client" && (
+//                   <button
+//                     onClick={() => handleCloseJob(job._id)}
+//                     className="bg-blue-700 text-white w-full py-2 mt-3 rounded"
+//                   >
+//                     Close Job
+//                   </button>
+//                 )}
+//               </div>
+//             );
+//           })}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Job;
 
 

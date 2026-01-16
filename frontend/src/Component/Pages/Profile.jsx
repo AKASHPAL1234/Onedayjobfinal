@@ -3,6 +3,7 @@ import { useAuth } from "../../authcontext/AuthProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { BACKENDURL } from "../../../utiles";
 
 export default function Profile() {
   const { profile, setIsAuthenication } = useAuth();
@@ -13,7 +14,7 @@ export default function Profile() {
     e.preventDefault();
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/auth/logout",
+        `${BACKENDURL}/api/auth/logout`,
         { withCredentials: true }
       );
 
@@ -64,12 +65,12 @@ export default function Profile() {
           </div>
 
           {/* Worker Code only if KYC approved */}
-          {/* {profile.kycStatus === "Approved" && profile.workerCode && (
+          {profile.kycStatus === "Approved" && profile.workerCode && (
             <div className="flex justify-between border-b pb-2">
               <span className="font-medium">Worker Code</span>
               <span className="font-mono text-blue-600">{profile.workerCode}</span>
             </div>
-          )} */}
+          )}
         </div>
 
         {/* Buttons */}

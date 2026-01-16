@@ -18,7 +18,8 @@
     "dashboard": "Dashboard",
     "admin": "Admin",
     "kycNow": "KYC Now",
-    "workerCode": "Worker Code"
+    "workerCode": "Worker Code",
+    "myProfile": "My Profile"
   },
   "hero": {
     "title": "Find Work for a",
@@ -170,7 +171,27 @@
     "finance": "Finance",
     "saveChanges": "Save Changes",
     "updating": "Updating..."
+  },
+  "about": {
+    "title": "About OneDayJob",
+    "subtitle": "Quick jobs. Real opportunities. No unnecessary complexity.",
+    "description": "OneDayJob is a simple and reliable platform designed to connect job seekers with short-term, part-time, and urgent job opportunities. We focus on speed, transparency, and real results instead of fake promises.",
+    "missionTitle": "Our Mission",
+    "mission": "Our mission is to reduce unemployment and job-search frustration by making short-term and daily jobs easy to find and easy to apply for.",
+    "offerTitle": "What We Offer",
+    "offers": [
+      "Verified one-day and short-term job listings",
+      "Easy job search without complicated processes",
+      "Opportunities for students, freelancers, and daily workers",
+      "Direct connection between employers and job seekers"
+    ],
+    "whyTitle": "Why Choose OneDayJob",
+    "whyText": "Most job portals are slow, crowded, and confusing. OneDayJob focuses only on what matters — fast hiring, genuine jobs, and simple usage.",
+    "joinTitle": "Start Working Without Waiting",
+    "joinText": "Whether you need work today or want to hire fast, OneDayJob is built to save time and get results.",
+    "button": "Get Started"
   }
+
 
 
 

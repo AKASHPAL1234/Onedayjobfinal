@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { BACKENDURL } from "../../utiles";
 
 const WorkerCode = () => {
   const [workercode, setCode] = useState("");
@@ -16,7 +17,7 @@ const WorkerCode = () => {
       setNotFound(false);
 
       const { data } = await axios.get(
-        `http://localhost:5000/api/auth/worker/${workercode}`,
+       `${BACKENDURL}/api/auth/worker/${workercode}`,
         { withCredentials: true }
       );
 
