@@ -1,0 +1,214 @@
+
+
+
+
+
+
+{
+  "navbar": {
+    "home": "Home",
+    "homeLink": "/",
+    "about": "About",
+    "aboutLink": "/about",
+    "services": "Services",
+    "servicesLink": "/services",
+    "contact": "Contact",
+    "contactLink": "/help",
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "admin": "Admin",
+    "kycNow": "KYC Now",
+    "workerCode": "Worker Code"
+  },
+  "hero": {
+    "title": "Find Work for a",
+    "subtitle": "Get Paid",
+    "description": "Quick gigs. Instant hiring. Daily payments. Designed for restaurants, delivery, housekeeping, events and more.",
+    "jobPlaceholder": "Job title e.g. Waiter",
+    "locationPlaceholder": "Location e.g. Lucknow",
+    "findJobs": "Find Jobs",
+    "features": {
+      "instant": "⭐ Instant Hiring",
+      "daily": "📅 Daily Jobs",
+      "fast": "💸 Fast Payments",
+      "instantDesc": "Post & hire in minutes",
+      "dailyDesc": "Short one-day gigs",
+      "fastDesc": "Simple tracking"
+    }
+   
+  
+ 
+},
+ "register": {
+    "title": "Register",
+    "rolePlaceholder": "Select Role",
+    "roles": {
+      "worker": "Worker",
+      "client": "Client"
+    },
+    "namePlaceholder": "Your Name",
+    "emailPlaceholder": "Your Email",
+    "phonePlaceholder": "Phone Number",
+    "passwordPlaceholder": "Password",
+    "companyPlaceholder": "Select Company Type",
+    "companies": {
+      "construction": "Construction",
+      "it": "IT",
+      "catering": "Catering",
+      "other": "Other"
+    },
+    "sendOtp": "Send OTP",
+    "sent": "Sent",
+    "otpPlaceholder": "Enter OTP",
+    "verify": "Verify",
+    "otpSent": "OTP sent!",
+    "otpFailed": "Failed to send OTP",
+    "otpVerified": "OTP verified!",
+    "invalidOtp": "Invalid OTP",
+    "emailFirst": "Please enter email first",
+    "verifyOtpFirst": "Please verify OTP before registering!",
+    "passwordLength": "Password must be at least 6 characters!",
+    "registerSuccess": "Registered successfully!",
+    "registerFailed": "Registration failed!",
+    "alreadyHave": "Already have an account?",
+    "login": "Login",
+    "registerBtn": "Register",
+    "registering": "Registering..."
+  },
+  "login": {
+    "title": "Login",
+    "fillFields": "Please fill all fields!",
+    "loginSuccess": "Login Successful ✅",
+    "invalidCreds": "Invalid credentials ❌",
+    "rolePlaceholder": "Select Role",
+    "roles": {
+      "worker": "Worker",
+      "client": "Client",
+      "admin": "Admin"
+    },
+    "emailPlaceholder": "Your Email",
+    "passwordPlaceholder": "Password",
+    "forgotPassword": "Forgot password?",
+    "loggingIn": "Logging in...",
+    "loginBtn": "Login",
+    "noAccount": "No account?",
+    "register": "Register"
+  },
+  
+  "profile": {
+    "loading": "Loading profile...",
+    "role": "Role",
+    "joined": "Joined",
+    "defaultRole": "User",
+    "edit": "Edit Profile",
+    "logout": "Logout",
+    "logoutSuccess": "Logged out successfully ✅",
+    "logoutFail": "Failed to logout ❌"
+  },
+  
+  "postjob": {
+    "title": "Post a Job",
+    "jobTitle": "Job Title",
+    "enterJobTitle": "Enter job title",
+    "workersNeeded": "How many workers needed?",
+    "enterWorkers": "Enter number of workers",
+    "category": "Category",
+    "city": "City",
+    "state": "Select State",
+    "address": "Address",
+    "pincode": "Pincode",
+    "hours": "Hours",
+    "budget": "Budget (₹)",
+    "submit": "Post Job",
+    "posting": "Posting...",
+    "success": "Job posted successfully ✅",
+    "failed": "Job post failed ❌",
+    "errorNumbers": "Hours, budget and workers needed must be greater than 0 ❌"
+  },
+  "categories": {
+    "bouncer": "Bouncer",
+    "delivery": "Delivery",
+    "driver": "Driver",
+    "housekeeping": "Housekeeping",
+    "cook": "Cook",
+    "security": "Security",
+    "eventStaff": "Event Staff",
+    "other": "Other"
+  },
+  
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "allJobs": "🌍 All Jobs",
+    "postJob": "➕ Post Job",
+    "updateJob": "✏️ Update Job",
+    "myProfile": "👤 My Profile",
+    "home": "💼 Home"
+  },
+  
+  "updateJob": {
+    "myJobs": "My Jobs",
+    "update": "Update",
+    "close": "Close",
+    "description": "Description",
+    "location": "Location",
+    "budget": "Budget",
+    "jobType": "Job Type",
+    "category": "Category",
+    "titlePlaceholder": "Job Title",
+    "descPlaceholder": "Description",
+    "locationPlaceholder": "Location",
+    "salaryPlaceholder": "Salary",
+    "selectType": "Select Type",
+    "selectCategory": "Select Category",
+    "fullTime": "Full-Time",
+    "partTime": "Part-Time",
+    "internship": "Internship",
+    "remote": "Remote",
+    "tech": "Tech",
+    "design": "Design",
+    "marketing": "Marketing",
+    "finance": "Finance",
+    "saveChanges": "Save Changes",
+    "updating": "Updating..."
+  }
+
+
+
+
+
+
+
+
+  
+
+
+
+
+    
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
