@@ -1,1 +1,1 @@
-export const BACKENDURL="http://localhost:5000"
+export const BACKENDURL="https://onedayjob-1klc.onrender.com"
