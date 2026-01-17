@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -203,6 +202,7 @@ export default function Navbar() {
               </li>
             )}
 
+            {/* Client Dashboard - Mobile */}
             {isAuthenication && profile?.role === "Client" && (
               <li>
                 <Link to="/dashboard" onClick={() => setOpen(false)}>
@@ -211,6 +211,27 @@ export default function Navbar() {
                   </button>
                 </Link>
               </li>
+            )}
+
+            {/* Admin Dashboard - Mobile */}
+            {isAuthenication && profile?.role === "Admin" && (
+              <>
+                <li>
+                  <Link to="/dashboard" onClick={() => setOpen(false)}>
+                    <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg">
+                      {t("navbar.dashboard")}
+                    </button>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to="/admindash" onClick={() => setOpen(false)}>
+                    <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg">
+                      {t("navbar.admin")}
+                    </button>
+                  </Link>
+                </li>
+              </>
             )}
 
             <li>
