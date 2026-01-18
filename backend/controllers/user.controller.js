@@ -75,12 +75,12 @@ export const register = async (req, res) => {
       },
     });
     await newUser.save();
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Welcome to OneDayJob ",
-      html:Welcome_Email_Template.replace("{name}",name),
-      });
+    // await transporter.sendMail({
+    //   from: process.env.EMAIL_USER,
+    //   to: email,
+    //   subject: "Welcome to OneDayJob ",
+    //   html:Welcome_Email_Template.replace("{name}",name),
+    //   });
    
 
     if (newUser) {
@@ -269,4 +269,5 @@ export const resetPasswordWithoutToken = async (req, res) => {
     console.error(err);
     res.status(500).json({ message: "Server error" });
   }
+
 };
