@@ -123,11 +123,15 @@ const Footer = () => {
             <a href="#" className="hover:text-white transition-colors duration-200">
               Terms of Service
             </a>
+             <a href="/about" className="hover:text-white transition-colors duration-200">
+             Akash pal
+            </a>
           </div>
         </div>
       </div>
     </footer>
   );
 };
+
 
 export default Footer;
